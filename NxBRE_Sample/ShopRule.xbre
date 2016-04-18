@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xBusinessRules
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="xBusinessRules.xsd">
+  <Integer id="4001" value="4001"/>
+  <Integer id="5999" value="5999"/>
+  <Integer id="6001" value="6001"/>
+  <Integer id="6999" value="6999"/>
+  <Integer id="7001" value="7001"/>
+  <Integer id="8999" value="8999"/>
+ 
+  <ObjectLookup id="Shop" objectId="CurrentShop" member="ShopCode"/>
+  <Logic>
+    <If>
+      <And>
+        <Between  leftId="4001" rightId="5999" valueId="Shop"/>
+      </And>
+      <Do>
+        <Evaluate id="SetShop">
+          <Parameter name="vKorg" value="1001"/>
+        </Evaluate>
+      </Do>
+    </If>
+    <ElseIf>
+      <And>
+        <Between  leftId="6001" rightId="6999" valueId="Shop"/>
+      </And>
+      <Do>
+        <Evaluate id="SetShop">
+          <Parameter name="vKorg" value="1500"/>
+        </Evaluate>
+      </Do>
+    </ElseIf>
+    <ElseIf>
+      <And>
+        <Between  leftId="7001" rightId="8999" valueId="Shop"/>
+      </And>
+      <Do>
+        <Evaluate id="SetShop">
+          <Parameter name="vKorg" value="1401"/>
+        </Evaluate>
+      </Do>
+    </ElseIf>
+  
+    <Else>
+      <ThrowFatalException value="Bu ShopCode için tanımlama yok..!"/>
+    </Else>
+  </Logic>
+</xBusinessRules>
